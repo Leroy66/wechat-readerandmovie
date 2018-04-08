@@ -1,0 +1,10 @@
+/* pages/movies/more-movies/more-movies.wxss */
+@import "../movie-grid/movie-grid-template.wxss";
+
+.hasMoreMovies {
+  clear: both;
+  display: block;
+  color: #ccc;
+  padding: 30px 0;
+  text-align: center;
+}

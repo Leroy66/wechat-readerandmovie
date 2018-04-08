@@ -1,0 +1,13 @@
+<template name="starsTemplate">
+  <view class='stars-container'>
+    <view class='stars'>
+     <block wx:for="{{[2,4,6,8,10]}}" wx:for-item="star" wx:key="star">
+        <!-- 处理星数 -->
+        <image wx:if="{{star<=average}}" src='/pages/images/icon/star.png'></image>
+        <image wx:elif="{{(star-average)<2}}" src='/pages/images/icon/half-star.png' style="width:20rpx;height:20rpx;"></image>
+        <image wx:else src='/pages/images/icon/none-star.png'></image>
+     </block>
+    </view>
+    <text class='star-score'>{{average}}</text>
+  </view>
+</template>
