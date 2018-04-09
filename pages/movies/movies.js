@@ -23,9 +23,9 @@ Page({
    */
   onLoad: function (options) {
     //转发接口的页码无效....
-    var inTheatersUrl = app.globalData.doubanBase +"/v2/movie/in_theaters";
-    var comingSoonUrl = app.globalData.doubanBase + "/v2/movie/coming_soon";
-    var top250Url = app.globalData.doubanBase + "/v2/movie/top250";
+    var inTheatersUrl = app.globalData.doubanBase +"/v2/movie/in_theaters?start=0&count=3";
+    var comingSoonUrl = app.globalData.doubanBase + "/v2/movie/coming_soon?start=0&count=3";
+    var top250Url = app.globalData.doubanBase + "/v2/movie/top250?start=0&count=3";
 
     //异步加载顺序不确定
     this.sendRequest(inTheatersUrl,"inTheaters");
@@ -38,13 +38,10 @@ Page({
     var that=this
     wx.request({
       url: url,
-      method: "POST",
-      data: {
-        start:0,
-        count:3
-      },
+      method: "GET",
+      data: {},
       header: {
-        "Content-Type": "",
+        "Content-Type": "json",
       },
       success: function (res) {
         //处理返回数据
@@ -94,6 +91,13 @@ Page({
     var category = e.currentTarget.dataset.category
     wx.navigateTo({
       url: 'more-movies/more-movies?category=' + category
+    })
+  },
+  //电影详情
+  onMovieDetail:function(e){
+    var movieid = e.currentTarget.dataset.movieid
+    wx.navigateTo({
+      url: 'movie-detail/movie-detail?id=' + movieid
     })
   },
 
@@ -163,7 +167,9 @@ Page({
       q: event.detail.value,
       requestUrl: url
     })
-    utils.sendHttpRequest(url, this.handlSearchResultDatas, 0, 21, event.detail.value);
+    var realUrl = url + "?start=0&count=18&q=" + event.detail.value;
+    console.log("realUrl", realUrl)
+    utils.sendHttpRequest(realUrl, this.handlSearchResultDatas);
     wx.showNavigationBarLoading();
   },
 
@@ -196,7 +202,7 @@ Page({
       } else {
         movieList = movies;
       }
-      totalCount = that.data.totalCount + 21;
+      totalCount = that.data.totalCount + 18;
       hasMoreMovies = true;
     } else {
       movieList = that.data.searchMovies
@@ -220,12 +226,11 @@ Page({
     if (!that.data.containerShow) {
       var requestUrl = that.data.requestUrl;
       if (that.data.hasMoreMovies) {
-        console.log("....q....", that.data.q)
-        utils.sendHttpRequest(requestUrl, that.handlSearchResultDatas, that.data.totalCount, 21, that.data.q);
+        var realUrl = requestUrl + "?start=" + that.data.totalCount + "&count=18&q=" + that.data.q
+        console.log("realUrlaaa", realUrl)
+        utils.sendHttpRequest(realUrl, that.handlSearchResultDatas);
         wx.showNavigationBarLoading();
       }
     }
   },
-  
-
 })

@@ -1,6 +1,6 @@
 <!--pages/movies/more-movies/more-movies.wxml-->
 <import src="../movie-grid/movie-grid-template.wxml" />
-<view class>
+<view >
     <template is="movieGridTemplate" data="{{movies}}" />
 </view>
 <view class="hasMoreMovies" wx:if="{{!hasMoreMovies}}">已加载全部</view>

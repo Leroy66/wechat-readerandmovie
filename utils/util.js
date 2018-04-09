@@ -15,17 +15,13 @@ const formatNumber = n => {
 }
 
 // 发网络请求
-function sendHttpRequest(url, callBack, start, count,q) {
+function sendHttpRequest(url, callBack) {
   wx.request({
     url: url,
-    method: "POST",
-    data: {
-      start: start,
-      count: count,
-      q:q,
-    },
+    method: "GET",
+    data: {},
     header: {
-      "Content-Type": "",
+      "Content-Type": "json",
     },
     success: function (res) {
       callBack(res.data)

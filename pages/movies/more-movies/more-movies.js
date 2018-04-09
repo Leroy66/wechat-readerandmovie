@@ -36,7 +36,8 @@ Page({
       requestUrl: url
     })
     if (that.data.hasMoreMovie) {
-      utils.sendHttpRequest(url, that.handleDoubanResponseData, 0, 21,"");
+      var realUrl = url +"?start=0&count=21"
+      utils.sendHttpRequest(realUrl, that.handleDoubanResponseData);
       wx.showNavigationBarLoading();
     }
   },
@@ -94,7 +95,8 @@ Page({
     var that = this
     var requestUrl = that.data.requestUrl;
     if (that.data.hasMoreMovies) {
-      utils.sendHttpRequest(requestUrl, that.handleDoubanResponseData, that.data.totalCount, 21,"");
+      var realUrl = requestUrl + "?start=" + that.data.totalCount + "&count=21"
+      utils.sendHttpRequest(realUrl, that.handleDoubanResponseData, that.data.totalCount);
       wx.showNavigationBarLoading();
     }
   },
@@ -107,28 +109,6 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.navigateTitle,
     })
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   },
 
   /**
@@ -141,16 +121,15 @@ Page({
       hasMoreMovie: true,
       movies: [],
     })
-    utils.sendHttpRequest(this.data.requestUrl, this.handleDoubanResponseData, 0, 21,"");
+    var realUrl = this.data.requestUrl + "?start=0&count=21"
+    utils.sendHttpRequest(realUrl, this.handleDoubanResponseData);
     wx.showNavigationBarLoading();
   },
-
-
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  //电影详情
+  onMovieDetail: function (e) {
+    var movieid = e.currentTarget.dataset.movieid
+    wx.navigateTo({
+      url: '../movie-detail/movie-detail?id=' + movieid
+    })
+  },
 })
