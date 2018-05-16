@@ -1,26 +1,26 @@
 <!--pages/movies/movies.wxml-->
 <import src="movie-list/movie-list-template.wxml" />
 <import src="movie-grid/movie-grid-template.wxml" />
+
 <view class='search'>
   <icon class="search-img" type='search' size='13' color='#405f80'></icon>
   <input type='text' placeholder='请输入电影的名字' placeholder-class='placeholder' bindfocus='onBindFocus' bindconfirm="onBandConfimTap" confirm-type="search"></input>
   <icon class='cancel-img' type='cancel' size='16' color='#405f80' bindtap='onCancelSearch' wx:if="{{!containerShow}}"></icon>
 </view>
+
 <view class='container' wx:if="{{containerShow}}">
-    <view class='movies-container'>
-        <template is="movieListTemplate"  data="{{movies:inTheaters,categoryTitle:categoryTitle1}}"/>
-    </view>
-    <view class='movies-container'>
-        <template is="movieListTemplate" data="{{movies:comingSoon,categoryTitle:categoryTitle2}}"/>
-    </view>
-    <view class='movies-container'>
-        <template is="movieListTemplate" data="{{movies:top250,categoryTitle:categoryTitle3}}"/>
-    </view>
+  <view class='movies-container'>
+    <template is="movieListTemplate" data="{{movies:inTheaters,categoryTitle:categoryTitle1}}" />
+  </view>
+  <view class='movies-container'>
+    <template is="movieListTemplate" data="{{movies:comingSoon,categoryTitle:categoryTitle2}}" />
+  </view>
+  <view class='movies-container'>
+    <template is="movieListTemplate" data="{{movies:top250,categoryTitle:categoryTitle3}}" />
+  </view>
 </view>
 
 <!-- 搜索显示的页面 -->
 <view class='searchList' wx:if="{{!containerShow}}">
   <template is="movieGridTemplate" data="{{movies:searchMovies}}" />
 </view>
-
-

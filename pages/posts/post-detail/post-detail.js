@@ -146,7 +146,7 @@ Page({
     ]
     wx.showActionSheet({
       itemList: itemList,
-      itemColor: "405f08",
+      itemColor: "#405f08",
       success(res) {
         console.log("确认分享", res.tapIndex)
       },
@@ -155,6 +155,7 @@ Page({
       }
     })
   },
+
   //音乐播放和暂停
   onMusicTap: function () {
     var that = this

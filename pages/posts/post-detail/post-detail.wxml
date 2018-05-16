@@ -3,7 +3,7 @@
   <image class='head-image' src='{{isPlayingMusic?postDetail.music.coverImg:postDetail.headImgSrc}}'></image>
   <image catchtap='onMusicTap' class='audio' src="{{isPlayingMusic?'/pages/images/music/music-stop.png':'/pages/images/music/music-start.png'}}"></image>
   <view class='author-date'>
-     <image class='avatar' src='../{{postDetail.avatar}}'></image> 
+    <image class='avatar' src='../{{postDetail.avatar}}'></image>
     <text class='name'>{{postDetail.author}}</text>
     <text class='const-text'>发表于</text>
     <text class='date'>{{postDetail.dataTime}}</text>
@@ -17,7 +17,7 @@
       <block wx:else>
         <image src='../../images/icon/collection-anti.png'></image>
       </block>
-      <image bindtap='onShareTap' class="share-img" src='../../images/icon/share.png'></image>
+      <image catchtap='onShareTap' class="share-img" src='../../images/icon/share.png'></image>
     </view>
     <view class='horizon'></view>
   </view>

@@ -57,6 +57,7 @@ Page({
 
   //处理返回数据
   handleDoubanResponseData: function (moviesData, blockKey){
+    console.log("moviesData", moviesData)
     var movies=[];
     for (var index in moviesData.subjects){
       var subject = moviesData.subjects[index];
