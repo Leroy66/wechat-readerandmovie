@@ -1,11 +1,15 @@
 // pages/other/scroll/scroll.js
-Page({
 
+var app = getApp()
+var interval;
+var varName;
+var ctx = wx.createCanvasContext('canvasArcCir');
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    text: "这是一条会滚动的文字滚来滚去的文字跑马灯，不错哟",
+    text: "这是一条会滚动的文字滚来滚去的文字跑马灯，dddddd不错哟",
     marqueePace: 1,//滚动速度
     marqueeDistance: 0,//初始滚动距离
     marquee_margin: 30,
@@ -24,8 +28,49 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.drawCircle();
   },
+  drawCircle:function(){
+    //创建并返回绘图上下文context对象。
+    var cxt_arc = wx.createCanvasContext('canvasCircle');
+    cxt_arc.setLineWidth(10);
+    cxt_arc.setStrokeStyle('#F7F8FA');
+    cxt_arc.setLineCap('round');
+    cxt_arc.beginPath();
+    cxt_arc.arc(80, 80, 60, 0, 2 * Math.PI, false);
+    cxt_arc.stroke();
+    cxt_arc.draw();
+
+    clearInterval(varName);
+    function drawArc(s, e) {
+      ctx.setFillStyle('white');
+      ctx.clearRect(0, 0, 200, 200);
+      ctx.draw();
+      ctx.setLineWidth(10);
+      ctx.setStrokeStyle('#00BCD3');
+      ctx.setLineCap('round');
+      ctx.beginPath();
+      ctx.arc(80, 80, 60, s, e, false);
+      ctx.stroke()
+      ctx.draw()
+    }
+    var step = 1, startAngle = 1.5 * Math.PI, endAngle = 0;
+    var animation_interval = 10, n = 100;
+    var animation = function () {
+      // 结束的比例
+      var endPre = 1 / 3;
+      if (step <= endPre * n) {
+        endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
+        drawArc(startAngle, endAngle);
+        step++;
+      } else {
+        clearInterval(varName);
+      }
+    };
+    varName = setInterval(animation, animation_interval);
+  },
+
+
 
   /**
    * 生命周期函数--监听页面显示
