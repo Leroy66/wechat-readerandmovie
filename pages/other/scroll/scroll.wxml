@@ -1,16 +1,15 @@
-
-<view>
-    <view class="wrap">
-  <view class="circle-box">
-    <canvas class="circle" style="width:200px; height:200px;" canvas-id="canvasArcCir">
-    </canvas>
-    <canvas class="circle" style="z-index: -5; width:200px; height:200px;" canvas-id="canvasCircle">
-    </canvas>
+<!-- <view>
+  <view class="wrap">
+    <view class="circle-box">
+      <canvas class="circle" style="width:200px; height:200px;" canvas-id="canvasArcCir">
+      </canvas>
+      <canvas class="circle" style="z-index: -5; width:200px; height:200px;" canvas-id="canvasCircle">
+      </canvas>
+    </view>
   </view>
-</view>
-</view>
+</view> -->
 
-<!-- 以下是图片循环gif --> 
+<!-- 以下是图片循环gif -->
 <!-- <view style='margin:10px auto;'>
      <image src="../../images/yinfu.gif"></image>
      <image src="../../images/play.gif"></image> 
@@ -30,3 +29,5 @@
   </view>
 </scroll-view> -->
 
+
+<image src="https://img.fetow.com/Public/Index/images/shewm.jpg" mode="widthFix" data-src="https://img.fetow.com/Public/Index/images/shewm.jpg" bindtap="previewImage"></image>
